@@ -1,22 +1,12 @@
-name: Lede-CI
+name: "Build CI for Lede firmware"
+run-name: "Building Lede firmware #${{ github.run-number }}"
+
 on: workflow_dispatch
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    outputs:
-      NOW: ${{ steps.prepare.outputs.NOW }}
-    steps:
-      - name: Prepare
-        id: prepare
-        run: echo "NOW=$(date +'%Y%m%d%H:%M:%S')" >> $GITHUB_OUTPUT
   build:
-    name: ${{ matrix.NOW }}
+    name: Building Lede firmware
     runs-on: ubuntu-latest
-    needs: [prepare]
-    strategy:
-      matrix:
-        NOW: ${{ needs.prepare.outputs.NOW }}
     steps:
       - name: Setup
         run: |
