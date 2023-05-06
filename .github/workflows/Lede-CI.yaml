@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Setup
         run: |
+          # Create work directory
+          mkdir ./lede
+          
           # Setup timezone
           sudo -E timedatectl set-timezone "Asia/Shanghai"
           
