@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Setup
         run: |
-          echo ${{ toJSON(github.event) }}
+          echo "${{ toJSON(github) }}"
       
       - name: Checkout
         run: |
