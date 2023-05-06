@@ -1,5 +1,5 @@
 name: "Build CI for Lede firmware"
-run-name: "Building Lede firmware #${{ github.run-number }}"
+run-name: "Building Lede firmware #${{ github.run_number }} (${{ github.run_attempt }})"
 
 on: workflow_dispatch
 
