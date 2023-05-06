@@ -1,1 +1,17 @@
+name: "Build CI for OpenWrt firmware"
+run-name: "Building OpenWrt firmware #${{ github.run_number }} (${{ github.run_attempt }})"
 
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: Building OpenWrt firmware
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        run: |
+          echo "Setup"
+      
+      - name: Checkout
+        run: |
+          echo "Checkout"
