@@ -1,2 +1,1 @@
-# OpenWrt CI's
-OpenWrt CI's
+# OpenWrt Packages
