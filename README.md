@@ -1,2 +1,2 @@
-# github-actions
-Github Actions
+# OpenWrt CI's
+OpenWrt CI's
