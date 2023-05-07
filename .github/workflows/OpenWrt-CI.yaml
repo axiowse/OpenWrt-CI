@@ -31,13 +31,16 @@ jobs:
           
       - name: Update feeds
         run: |
-          # Add software source
-          echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
-          echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
-          
           # Update and install
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+          
+          # Add passwall
+          git clone --branch packages https://github.com/xiaorouji/openwrt-passwall.git package/passwall
+          git clone --branch luci https://github.com/xiaorouji/openwrt-passwall.git package/passwall/luci-app-passwall
+          
+          # Others
+          git clone --branch packages https://github.com/axiowse/OpenWrt-CI.git package/others
           
       - name: Generate config
         run: |
