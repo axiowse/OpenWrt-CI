@@ -45,6 +45,11 @@ jobs:
           
           # Others
           git clone --branch packages https://github.com/axiowse/OpenWrt-CI.git package/others
+
+          # Update autoconf
+          rm -rf tools/{autoconf,autoconf-archive}
+          git clone --branch autoconf https://github.com/axiowse/OpenWrt-CI.git tools/autoconf
+          git clone --branch autoconf-archive https://github.com/axiowse/OpenWrt-CI.git tools/autoconf-archive
           
       - name: Generate config
         run: |
@@ -57,9 +62,6 @@ jobs:
           CONFIG_DEVEL=y
           CONFIG_TOOLCHAINOPTS=y
           CONFIG_GCC_USE_GRAPHITE=y
-          CONFIG_GCC_USE_VERSION_13=y
-          CONFIG_GCC_VERSION="13.1.0"
-          CONFIG_GCC_VERSION_13=y
           CONFIG_GRUB_TIMEOUT="0"
           CONFIG_INCLUDE_STATIC_LIBC=y
           CONFIG_INCLUDE_STATIC_LIBPTHREAD=y
@@ -93,7 +95,7 @@ jobs:
           CONFIG_OPENSSL_WITH_TLS13=y
           CONFIG_OPENSSL_WITH_WHIRLPOOL=y
           CONFIG_PACKAGE_ar=y
-          CONFIG_PACKAGE_autoconf=y
+          CONFIG_PACKAGE_attendedsysupgrade-common=y
           CONFIG_PACKAGE_binutils=y
           CONFIG_PACKAGE_boost=y
           CONFIG_PACKAGE_boost-program_options=y
@@ -117,11 +119,9 @@ jobs:
           CONFIG_PACKAGE_dnsmasq_full_tftp=y
           CONFIG_PACKAGE_frpc=y
           CONFIG_PACKAGE_gcc=y
-          CONFIG_PACKAGE_glib2=y
           CONFIG_PACKAGE_haproxy=y
           CONFIG_PACKAGE_ip-full=y
           CONFIG_PACKAGE_ipset=y
-          CONFIG_PACKAGE_kmod-fuse=y
           CONFIG_PACKAGE_kmod-ipt-core=y
           CONFIG_PACKAGE_kmod-ipt-ipset=y
           CONFIG_PACKAGE_kmod-nf-conntrack-netlink=y
@@ -131,18 +131,13 @@ jobs:
           CONFIG_PACKAGE_kmod-nft-socket=y
           CONFIG_PACKAGE_kmod-nft-tproxy=y
           CONFIG_PACKAGE_libatomic=y
-          CONFIG_PACKAGE_libattr=y
           CONFIG_PACKAGE_libbfd=y
           CONFIG_PACKAGE_libbpf=y
-          CONFIG_PACKAGE_libbsd=y
           CONFIG_PACKAGE_libcares=y
           CONFIG_PACKAGE_libctf=y
           CONFIG_PACKAGE_libcurl=y
-          CONFIG_PACKAGE_libdnet=y
           CONFIG_PACKAGE_libelf=y
           CONFIG_PACKAGE_libev=y
-          CONFIG_PACKAGE_libffi=y
-          CONFIG_PACKAGE_libfuse3=y
           CONFIG_PACKAGE_libgmp=y
           CONFIG_PACKAGE_libipset=y
           CONFIG_PACKAGE_libiwinfo=y
@@ -153,7 +148,6 @@ jobs:
           CONFIG_PACKAGE_liblucihttp=y
           CONFIG_PACKAGE_liblucihttp-lua=y
           CONFIG_PACKAGE_liblucihttp-ucode=y
-          CONFIG_PACKAGE_libmspack=y
           CONFIG_PACKAGE_libncurses=y
           CONFIG_PACKAGE_libnetfilter-conntrack=y
           CONFIG_PACKAGE_libnettle=y
@@ -162,18 +156,16 @@ jobs:
           CONFIG_PACKAGE_libopcodes=y
           CONFIG_PACKAGE_libopenssl=y
           CONFIG_PACKAGE_libpcre=y
-          CONFIG_PACKAGE_libpcre2=y
           CONFIG_PACKAGE_libreadline=y
           CONFIG_PACKAGE_libsodium=y
           CONFIG_PACKAGE_libstdcpp=y
-          CONFIG_PACKAGE_libtirpc=y
           CONFIG_PACKAGE_libubus-lua=y
           CONFIG_PACKAGE_libuci-lua=y
           CONFIG_PACKAGE_libudns=y
           CONFIG_PACKAGE_libzstd=y
           CONFIG_PACKAGE_lua=y
           CONFIG_PACKAGE_luci=y
-          CONFIG_PACKAGE_luci-app-arpbind=y
+          CONFIG_PACKAGE_luci-app-attendedsysupgrade=y
           CONFIG_PACKAGE_luci-app-firewall=y
           CONFIG_PACKAGE_luci-app-frpc=y
           CONFIG_PACKAGE_luci-app-opkg=y
@@ -182,6 +174,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-vlmcsd=y
           CONFIG_PACKAGE_luci-base=y
           CONFIG_PACKAGE_luci-compat=y
+          CONFIG_PACKAGE_luci-i18n-attendedsysupgrade-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-frpc-zh-cn=y
@@ -201,52 +194,16 @@ jobs:
           CONFIG_PACKAGE_luci-mod-system=y
           CONFIG_PACKAGE_luci-proto-ipv6=y
           CONFIG_PACKAGE_luci-proto-ppp=y
-          CONFIG_PACKAGE_luci-ssl=y
           CONFIG_PACKAGE_luci-theme-bootstrap=y
           CONFIG_PACKAGE_luci-theme-material=y
-          CONFIG_PACKAGE_m4=y
           CONFIG_PACKAGE_microsocks=y
           CONFIG_PACKAGE_objdump=y
-          CONFIG_PACKAGE_open-vm-tools=y
-          CONFIG_PACKAGE_open-vm-tools-fuse=y
-          CONFIG_PACKAGE_perl=y
-          CONFIG_PACKAGE_perlbase-base=y
-          CONFIG_PACKAGE_perlbase-bytes=y
-          CONFIG_PACKAGE_perlbase-class=y
-          CONFIG_PACKAGE_perlbase-config=y
-          CONFIG_PACKAGE_perlbase-cwd=y
-          CONFIG_PACKAGE_perlbase-data=y
-          CONFIG_PACKAGE_perlbase-dynaloader=y
-          CONFIG_PACKAGE_perlbase-errno=y
-          CONFIG_PACKAGE_perlbase-essential=y
-          CONFIG_PACKAGE_perlbase-fcntl=y
-          CONFIG_PACKAGE_perlbase-file=y
-          CONFIG_PACKAGE_perlbase-filehandle=y
-          CONFIG_PACKAGE_perlbase-getopt=y
-          CONFIG_PACKAGE_perlbase-i18n=y
-          CONFIG_PACKAGE_perlbase-integer=y
-          CONFIG_PACKAGE_perlbase-io=y
-          CONFIG_PACKAGE_perlbase-list=y
-          CONFIG_PACKAGE_perlbase-locale=y
-          CONFIG_PACKAGE_perlbase-params=y
-          CONFIG_PACKAGE_perlbase-posix=y
-          CONFIG_PACKAGE_perlbase-re=y
-          CONFIG_PACKAGE_perlbase-scalar=y
-          CONFIG_PACKAGE_perlbase-selectsaver=y
-          CONFIG_PACKAGE_perlbase-selfloader=y
-          CONFIG_PACKAGE_perlbase-socket=y
-          CONFIG_PACKAGE_perlbase-symbol=y
-          CONFIG_PACKAGE_perlbase-text=y
-          CONFIG_PACKAGE_perlbase-tie=y
-          CONFIG_PACKAGE_perlbase-unicore=y
-          CONFIG_PACKAGE_perlbase-utf8=y
-          CONFIG_PACKAGE_perlbase-xsloader=y
-          CONFIG_PACKAGE_px5g-mbedtls=y
           CONFIG_PACKAGE_resolveip=y
           CONFIG_PACKAGE_rpcd=y
           CONFIG_PACKAGE_rpcd-mod-file=y
           CONFIG_PACKAGE_rpcd-mod-iwinfo=y
           CONFIG_PACKAGE_rpcd-mod-luci=y
+          CONFIG_PACKAGE_rpcd-mod-rpcsys=y
           CONFIG_PACKAGE_rpcd-mod-rrdns=y
           CONFIG_PACKAGE_rpcd-mod-ucode=y
           CONFIG_PACKAGE_shadowsocks-libev-config=y
@@ -270,10 +227,7 @@ jobs:
           CONFIG_PACKAGE_vlmcsd=y
           CONFIG_PACKAGE_xray-core=y
           CONFIG_PACKAGE_zlib=y
-          CONFIG_PCRE2_JIT_ENABLED=y
           CONFIG_PCRE_JIT_ENABLED=y
-          CONFIG_PERL_NOCOMMENT=y
-          CONFIG_PERL_THREADS=y
           CONFIG_STRIP_ARGS="--strip-all"
           CONFIG_TARGET_KERNEL_PARTSIZE=128
           CONFIG_TARGET_ROOTFS_PARTSIZE=512
@@ -290,7 +244,6 @@ jobs:
           # Exclude
           echo "# CONFIG_PACKAGE_dnsmasq is not set" >> .config
           echo "# CONFIG_GDB is not set" >> .config
-          echo "# CONFIG_GCC_USE_VERSION_12 is not set" >> .config
           echo "# CONFIG_LIBC_USE_MUSL is not set" >> .config
           
           # Merge
