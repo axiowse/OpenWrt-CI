@@ -50,7 +50,15 @@ jobs:
           CONFIG_TARGET_x86=y
           CONFIG_TARGET_x86_64=y
           CONFIG_TARGET_x86_64_DEVICE_generic=y
+          CONFIG_DEVEL=y
+          CONFIG_TOOLCHAINOPTS=y
+          CONFIG_GCC_USE_GRAPHITE=y
           CONFIG_GRUB_TIMEOUT="0"
+          CONFIG_INCLUDE_STATIC_LIBC=y
+          CONFIG_INCLUDE_STATIC_LIBPTHREAD=y
+          CONFIG_INCLUDE_STATIC_LIBSTDC=y
+          CONFIG_INCLUDE_STATIC_LINK_SPEC=y
+          CONFIG_LIBC="glibc"
           CONFIG_LIBCURL_COOKIES=y
           CONFIG_LIBCURL_FILE=y
           CONFIG_LIBCURL_FTP=y
@@ -60,6 +68,7 @@ jobs:
           CONFIG_LIBCURL_NO_SMB="!"
           CONFIG_LIBCURL_PROXY=y
           CONFIG_LIBCURL_UNIX_SOCKETS=y
+          CONFIG_LIBC_USE_GLIBC=y
           CONFIG_LIBSODIUM_MINIMAL=y
           CONFIG_LUCI_LANG_zh_Hans=y
           CONFIG_OPENSSL_ENGINE=y
@@ -76,6 +85,8 @@ jobs:
           CONFIG_OPENSSL_WITH_SRP=y
           CONFIG_OPENSSL_WITH_TLS13=y
           CONFIG_OPENSSL_WITH_WHIRLPOOL=y
+          CONFIG_PACKAGE_ar=y
+          CONFIG_PACKAGE_binutils=y
           CONFIG_PACKAGE_boost=y
           CONFIG_PACKAGE_boost-program_options=y
           CONFIG_PACKAGE_boost-system=y
@@ -97,11 +108,11 @@ jobs:
           CONFIG_PACKAGE_dnsmasq_full_noid=y
           CONFIG_PACKAGE_dnsmasq_full_tftp=y
           CONFIG_PACKAGE_frpc=y
+          CONFIG_PACKAGE_gcc=y
           CONFIG_PACKAGE_glib2=y
           CONFIG_PACKAGE_haproxy=y
           CONFIG_PACKAGE_ip-full=y
           CONFIG_PACKAGE_ipset=y
-          CONFIG_PACKAGE_jq=y
           CONFIG_PACKAGE_kmod-fuse=y
           CONFIG_PACKAGE_kmod-ipt-core=y
           CONFIG_PACKAGE_kmod-ipt-ipset=y
@@ -113,9 +124,10 @@ jobs:
           CONFIG_PACKAGE_kmod-nft-tproxy=y
           CONFIG_PACKAGE_libatomic=y
           CONFIG_PACKAGE_libattr=y
+          CONFIG_PACKAGE_libbfd=y
           CONFIG_PACKAGE_libbpf=y
-          CONFIG_PACKAGE_libcap-ng=y
           CONFIG_PACKAGE_libcares=y
+          CONFIG_PACKAGE_libctf=y
           CONFIG_PACKAGE_libcurl=y
           CONFIG_PACKAGE_libdnet=y
           CONFIG_PACKAGE_libelf=y
@@ -138,6 +150,7 @@ jobs:
           CONFIG_PACKAGE_libnettle=y
           CONFIG_PACKAGE_libnfnetlink=y
           CONFIG_PACKAGE_libnghttp2=y
+          CONFIG_PACKAGE_libopcodes=y
           CONFIG_PACKAGE_libopenssl=y
           CONFIG_PACKAGE_libpcre=y
           CONFIG_PACKAGE_libpcre2=y
@@ -148,6 +161,7 @@ jobs:
           CONFIG_PACKAGE_libubus-lua=y
           CONFIG_PACKAGE_libuci-lua=y
           CONFIG_PACKAGE_libudns=y
+          CONFIG_PACKAGE_libzstd=y
           CONFIG_PACKAGE_lua=y
           CONFIG_PACKAGE_luci=y
           CONFIG_PACKAGE_luci-app-arpbind=y
@@ -156,7 +170,6 @@ jobs:
           CONFIG_PACKAGE_luci-app-opkg=y
           CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=y
-          CONFIG_PACKAGE_luci-app-upnp=y
           CONFIG_PACKAGE_luci-app-vlmcsd=y
           CONFIG_PACKAGE_luci-base=y
           CONFIG_PACKAGE_luci-compat=y
@@ -165,7 +178,6 @@ jobs:
           CONFIG_PACKAGE_luci-i18n-frpc-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
           CONFIG_PACKAGE_luci-lib-base=y
           CONFIG_PACKAGE_luci-lib-ip=y
           CONFIG_PACKAGE_luci-lib-json=y
@@ -182,8 +194,9 @@ jobs:
           CONFIG_PACKAGE_luci-proto-ppp=y
           CONFIG_PACKAGE_luci-ssl=y
           CONFIG_PACKAGE_luci-theme-bootstrap=y
+          CONFIG_PACKAGE_luci-theme-material=y
           CONFIG_PACKAGE_microsocks=y
-          CONFIG_PACKAGE_miniupnpd-nftables=y
+          CONFIG_PACKAGE_objdump=y
           CONFIG_PACKAGE_open-vm-tools=y
           CONFIG_PACKAGE_open-vm-tools-fuse=y
           CONFIG_PACKAGE_px5g-mbedtls=y
@@ -214,12 +227,16 @@ jobs:
           CONFIG_PACKAGE_v2ray-plugin=y
           CONFIG_PACKAGE_vlmcsd=y
           CONFIG_PACKAGE_xray-core=y
-          CONFIG_PACKAGE_yq=y
           CONFIG_PACKAGE_zlib=y
           CONFIG_PCRE2_JIT_ENABLED=y
           CONFIG_PCRE_JIT_ENABLED=y
+          CONFIG_STRIP_ARGS="--strip-all"
           CONFIG_TARGET_KERNEL_PARTSIZE=128
           CONFIG_TARGET_ROOTFS_PARTSIZE=512
+          CONFIG_TARGET_SUFFIX="gnu"
+          CONFIG_USE_GLIBC=y
+          CONFIG_USE_STRIP=y
+          CONFIG_ZSTD_OPTIMIZE_O3=y
           CONFIG_boost-compile-visibility-hidden=y
           CONFIG_boost-runtime-shared=y
           CONFIG_boost-static-and-shared-libs=y
@@ -228,6 +245,8 @@ jobs:
           
           # Exclude
           echo "# CONFIG_PACKAGE_dnsmasq is not set" >> .config
+          echo "# CONFIG_GDB is not set" >> .config
+          echo "# CONFIG_LIBC_USE_MUSL is not set" >> .config
           
           # Merge
           make defconfig
