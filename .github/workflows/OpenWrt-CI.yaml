@@ -6,7 +6,7 @@ on: workflow_dispatch
 jobs:
   build:
     name: Building OpenWrt firmware
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Setup
         run: |          
