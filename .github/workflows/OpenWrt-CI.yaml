@@ -46,6 +46,11 @@ jobs:
           # Others
           git clone --branch packages https://github.com/axiowse/OpenWrt-CI.git package/others
           
+          # Update autoconf
+          rm -rf tools/{autoconf,autoconf-archive}
+          git clone --branch autoconf https://github.com/axiowse/OpenWrt-CI.git tools/autoconf
+          git clone --branch autoconf-archive https://github.com/axiowse/OpenWrt-CI.git tools/autoconf-archive
+          
       - name: Generate config
         run: |
           # Custom config
