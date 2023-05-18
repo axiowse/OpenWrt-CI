@@ -6,7 +6,7 @@ on: workflow_dispatch
 jobs:
   build:
     name: Building OpenWrt firmware
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Setup
         run: |          
@@ -14,15 +14,15 @@ jobs:
           sudo -E timedatectl set-timezone "Asia/Shanghai"
           
           # Upgrade
-          sudo -E apt update -y
-          sudo -E apt full-upgrade -y
+          sudo -E apt-get update -y
+          sudo -E apt-get full-upgrade -y
           
           # Install dependencies
-          sudo -E apt install -y build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
+          sudo -E apt-get install -y build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
           
           # Cleanup
-          sudo -E apt autoremove --purge
-          sudo -E apt clean
+          sudo -E apt-get autoremove --purge
+          sudo -E apt-get clean
       
       - name: Checkout
         run: |
@@ -67,35 +67,6 @@ jobs:
           CONFIG_LIBCURL_UNIX_SOCKETS=y
           CONFIG_LIBSODIUM_MINIMAL=y
           CONFIG_LUCI_LANG_zh_Hans=y
-          CONFIG_NGINX_HTTP_ACCESS=y
-          CONFIG_NGINX_HTTP_AUTH_BASIC=y
-          CONFIG_NGINX_HTTP_AUTOINDEX=y
-          CONFIG_NGINX_HTTP_BROWSER=y
-          CONFIG_NGINX_HTTP_CACHE=y
-          CONFIG_NGINX_HTTP_CHARSET=y
-          CONFIG_NGINX_HTTP_EMPTY_GIF=y
-          CONFIG_NGINX_HTTP_FASTCGI=y
-          CONFIG_NGINX_HTTP_GEO=y
-          CONFIG_NGINX_HTTP_GZIP=y
-          CONFIG_NGINX_HTTP_GZIP_STATIC=y
-          CONFIG_NGINX_HTTP_LIMIT_CONN=y
-          CONFIG_NGINX_HTTP_LIMIT_REQ=y
-          CONFIG_NGINX_HTTP_MAP=y
-          CONFIG_NGINX_HTTP_MEMCACHED=y
-          CONFIG_NGINX_HTTP_PROXY=y
-          CONFIG_NGINX_HTTP_REFERER=y
-          CONFIG_NGINX_HTTP_REWRITE=y
-          CONFIG_NGINX_HTTP_SCGI=y
-          CONFIG_NGINX_HTTP_SPLIT_CLIENTS=y
-          CONFIG_NGINX_HTTP_SSI=y
-          CONFIG_NGINX_HTTP_UPSTREAM_HASH=y
-          CONFIG_NGINX_HTTP_UPSTREAM_IP_HASH=y
-          CONFIG_NGINX_HTTP_UPSTREAM_KEEPALIVE=y
-          CONFIG_NGINX_HTTP_UPSTREAM_LEAST_CONN=y
-          CONFIG_NGINX_HTTP_USERID=y
-          CONFIG_NGINX_HTTP_UWSGI=y
-          CONFIG_NGINX_HTTP_V2=y
-          CONFIG_NGINX_PCRE=y
           CONFIG_OPENSSL_ENGINE=y
           CONFIG_OPENSSL_OPTIMIZE_SPEED=y
           CONFIG_OPENSSL_WITH_ASM=y
@@ -110,9 +81,6 @@ jobs:
           CONFIG_OPENSSL_WITH_SRP=y
           CONFIG_OPENSSL_WITH_TLS13=y
           CONFIG_OPENSSL_WITH_WHIRLPOOL=y
-          CONFIG_PACKAGE_acme=y
-          CONFIG_PACKAGE_acme-acmesh=y
-          CONFIG_PACKAGE_acme-common=y
           CONFIG_PACKAGE_boost=y
           CONFIG_PACKAGE_boost-program_options=y
           CONFIG_PACKAGE_boost-system=y
@@ -122,8 +90,6 @@ jobs:
           CONFIG_PACKAGE_coreutils-base64=y
           CONFIG_PACKAGE_coreutils-nohup=y
           CONFIG_PACKAGE_curl=y
-          CONFIG_PACKAGE_ddns-scripts=y
-          CONFIG_PACKAGE_ddns-scripts-services=y
           CONFIG_PACKAGE_dejavu-fonts-ttf-DejaVuMathTeXGyre=y
           CONFIG_PACKAGE_dejavu-fonts-ttf-DejaVuSans=y
           CONFIG_PACKAGE_dejavu-fonts-ttf-DejaVuSans-Bold=y
@@ -157,7 +123,6 @@ jobs:
           CONFIG_PACKAGE_dnsmasq_full_nftset=y
           CONFIG_PACKAGE_dnsmasq_full_noid=y
           CONFIG_PACKAGE_dnsmasq_full_tftp=y
-          CONFIG_PACKAGE_frpc=y
           CONFIG_PACKAGE_glib2=y
           CONFIG_PACKAGE_haproxy=y
           CONFIG_PACKAGE_ip-full=y
@@ -174,7 +139,6 @@ jobs:
           CONFIG_PACKAGE_libatomic=y
           CONFIG_PACKAGE_libattr=y
           CONFIG_PACKAGE_libbpf=y
-          CONFIG_PACKAGE_libcap=y
           CONFIG_PACKAGE_libcares=y
           CONFIG_PACKAGE_libcurl=y
           CONFIG_PACKAGE_libdnet=y
@@ -199,8 +163,6 @@ jobs:
           CONFIG_PACKAGE_libnfnetlink=y
           CONFIG_PACKAGE_libnghttp2=y
           CONFIG_PACKAGE_libopenssl=y
-          CONFIG_PACKAGE_libopenssl-conf=y
-          CONFIG_PACKAGE_libpcre=y
           CONFIG_PACKAGE_libpcre2=y
           CONFIG_PACKAGE_libreadline=y
           CONFIG_PACKAGE_libsodium=y
@@ -209,23 +171,16 @@ jobs:
           CONFIG_PACKAGE_libubus-lua=y
           CONFIG_PACKAGE_libuci-lua=y
           CONFIG_PACKAGE_libudns=y
-          CONFIG_PACKAGE_libustream-openssl=y
           CONFIG_PACKAGE_lua=y
           CONFIG_PACKAGE_luci=y
-          CONFIG_PACKAGE_luci-app-acme=y
-          CONFIG_PACKAGE_luci-app-ddns=y
           CONFIG_PACKAGE_luci-app-firewall=y
-          CONFIG_PACKAGE_luci-app-frpc=y
           CONFIG_PACKAGE_luci-app-opkg=y
           CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-passwall_Nftables_Transparent_Proxy=y
           CONFIG_PACKAGE_luci-base=y
           CONFIG_PACKAGE_luci-compat=y
-          CONFIG_PACKAGE_luci-i18n-acme-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-frpc-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-opkg-zh-cn=y
           CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=y
           CONFIG_PACKAGE_luci-lib-base=y
@@ -240,26 +195,13 @@ jobs:
           CONFIG_PACKAGE_luci-mod-rpc=y
           CONFIG_PACKAGE_luci-mod-status=y
           CONFIG_PACKAGE_luci-mod-system=y
-          CONFIG_PACKAGE_luci-nginx=y
           CONFIG_PACKAGE_luci-proto-ipv6=y
           CONFIG_PACKAGE_luci-proto-ppp=y
-          CONFIG_PACKAGE_luci-ssl=y
-          CONFIG_PACKAGE_luci-ssl-nginx=y
-          CONFIG_PACKAGE_luci-ssl-openssl=y
           CONFIG_PACKAGE_luci-theme-bootstrap=y
           CONFIG_PACKAGE_luci-theme-material=y
           CONFIG_PACKAGE_microsocks=y
-          CONFIG_PACKAGE_nginx=y
-          CONFIG_PACKAGE_nginx-mod-luci=y
-          CONFIG_PACKAGE_nginx-mod-luci-ssl=y
-          CONFIG_PACKAGE_nginx-mod-ubus=y
-          CONFIG_PACKAGE_nginx-ssl=y
-          CONFIG_PACKAGE_nginx-ssl-util=y
-          CONFIG_PACKAGE_nginx-util=y
           CONFIG_PACKAGE_open-vm-tools=y
           CONFIG_PACKAGE_open-vm-tools-fuse=y
-          CONFIG_PACKAGE_openssl-util=y
-          CONFIG_PACKAGE_px5g-mbedtls=y
           CONFIG_PACKAGE_resolveip=y
           CONFIG_PACKAGE_rpcd=y
           CONFIG_PACKAGE_rpcd-mod-file=y
@@ -274,7 +216,6 @@ jobs:
           CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
           CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=y
           CONFIG_PACKAGE_simple-obfs=y
-          CONFIG_PACKAGE_socat=y
           CONFIG_PACKAGE_tcping=y
           CONFIG_PACKAGE_terminfo=y
           CONFIG_PACKAGE_trojan-plus=y
@@ -284,17 +225,11 @@ jobs:
           CONFIG_PACKAGE_uhttpd=y
           CONFIG_PACKAGE_uhttpd-mod-ubus=y
           CONFIG_PACKAGE_unzip=y
-          CONFIG_PACKAGE_uwsgi=y
-          CONFIG_PACKAGE_uwsgi-cgi-plugin=y
-          CONFIG_PACKAGE_uwsgi-luci-support=y
-          CONFIG_PACKAGE_uwsgi-syslog-plugin=y
           CONFIG_PACKAGE_v2ray-core=y
           CONFIG_PACKAGE_v2ray-plugin=y
-          CONFIG_PACKAGE_wget-ssl=y
           CONFIG_PACKAGE_xray-core=y
           CONFIG_PACKAGE_zlib=y
           CONFIG_PCRE2_JIT_ENABLED=y
-          CONFIG_PCRE_JIT_ENABLED=y
           CONFIG_TARGET_KERNEL_PARTSIZE=128
           CONFIG_TARGET_ROOTFS_PARTSIZE=512
           CONFIG_boost-compile-visibility-hidden=y
